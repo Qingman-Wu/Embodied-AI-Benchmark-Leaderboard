@@ -1,0 +1,29 @@
+[
+  {
+    "model": "Diffusion Policy",
+    "code": "",
+    "pretrained_checkpoint": "",
+    "libero_checkpoint": "",
+    "huggingface": "",
+    "status": "pending verification",
+    "notes": "Checkpoint information will be filled after source audit."
+  },
+  {
+    "model": "Octo",
+    "code": "",
+    "pretrained_checkpoint": "",
+    "libero_checkpoint": "",
+    "huggingface": "",
+    "status": "pending verification",
+    "notes": "Checkpoint information will be filled after source audit."
+  },
+  {
+    "model": "OpenVLA",
+    "code": "",
+    "pretrained_checkpoint": "",
+    "libero_checkpoint": "",
+    "huggingface": "",
+    "status": "pending verification",
+    "notes": "Checkpoint information will be filled after source audit."
+  }
+]
