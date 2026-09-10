@@ -25,5 +25,32 @@
     "huggingface": "",
     "status": "pending verification",
     "notes": "Checkpoint information will be filled after source audit."
+  },
+  {
+    "model": "ACT",
+    "code": "",
+    "pretrained_checkpoint": "",
+    "libero_checkpoint": "",
+    "huggingface": "",
+    "status": "pending verification",
+    "notes": "Early imitation learning policy. Checkpoint information requires official source verification."
+  },
+  {
+    "model": "BC-Z",
+    "code": "",
+    "pretrained_checkpoint": "",
+    "libero_checkpoint": "",
+    "huggingface": "",
+    "status": "pending verification",
+    "notes": "Early robot policy baseline. Checkpoint information requires official source verification."
+  },
+  {
+    "model": "3D Diffuser Actor",
+    "code": "",
+    "pretrained_checkpoint": "",
+    "libero_checkpoint": "",
+    "huggingface": "",
+    "status": "pending verification",
+    "notes": "Diffusion-based manipulation policy."
   }
 ]
