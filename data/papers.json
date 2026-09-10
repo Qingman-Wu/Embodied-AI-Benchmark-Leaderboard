@@ -1,13 +1,13 @@
 [
   {
-    "paper": "",
-    "year": null,
-    "venue": "",
+    "paper": "OpenVLA: An Open-Source Vision-Language-Action Model",
+    "year": 2024,
+    "venue": "CoRL 2024",
     "authors": "",
-    "project_url": "",
-    "github": "",
+    "project_url": "https://openvla.github.io/",
+    "github": "https://github.com/openvla/openvla",
     "huggingface": "",
     "benchmark": "LIBERO",
-    "notes": "Paper metadata will be added after verification."
+    "notes": "已录入 LIBERO 结果。后续补充完整作者信息、Hugging Face checkpoint 信息以及更多论文。"
   }
 ]
