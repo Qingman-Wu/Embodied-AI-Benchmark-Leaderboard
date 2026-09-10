@@ -1,0 +1,82 @@
+[
+  {
+    "model": "OpenVLA",
+    "category": "Open-source VLA",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Core VLA baseline. Results will be stored as experiment-level records."
+  },
+  {
+    "model": "pi0",
+    "category": "Foundation Robot Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Physical Intelligence VLA model. Separate category due to large-scale training."
+  },
+  {
+    "model": "pi0.5",
+    "category": "Foundation Robot Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Physical Intelligence model. Keep separate from standard VLA comparisons."
+  },
+  {
+    "model": "LingBot-VA",
+    "category": "World Action Model / Video Action Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Recent WAM-related model."
+  },
+  {
+    "model": "Motus",
+    "category": "World Action Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Recent world-action modeling approach."
+  },
+  {
+    "model": "Streaming-WAM",
+    "category": "World Action Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Streaming variant of WAM."
+  },
+  {
+    "model": "OA-WAM",
+    "category": "World Action Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Object-addressable world action model."
+  },
+  {
+    "model": "LaWAM",
+    "category": "World Action Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Latent world action model."
+  },
+  {
+    "model": "GR00T",
+    "category": "Foundation Robot Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "NVIDIA robot foundation model family."
+  },
+  {
+    "model": "Fast-WAM",
+    "category": "World Action Model",
+    "benchmark": "LIBERO",
+    "result_status": "collecting",
+    "checkpoint_status": "pending verification",
+    "notes": "Target comparison family for Fast-WAM-H3."
+  }
+]
