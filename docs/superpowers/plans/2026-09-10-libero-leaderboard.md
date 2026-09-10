@@ -18,10 +18,12 @@
 - [x] 5. 实施 `scripts/export_hf_dataset.py --output-dir PATH`，输出标准 JSON 数据、默认 libero config 和独立 wam config 的 dataset card；验证本地 `load_dataset(PATH)`。
 - [x] 6. 更新 README、methodology、evaluation_protocol、data_sources、website README、数据贡献指南与 CI。自动维护只做确定性校验/渲染，新研究结果经来源审核再录入。
 - [x] 7. 运行 unittest、数据校验、生成器 `--check`、导出集成验证及 `git diff --check`，审查数据和变更，修正发现的问题。
-- [ ] 8. 提交并推送实现分支，创建可审核 PR，报告链接和未核实项目。
+- [x] 8. 提交并推送实现分支，创建可审核 PR，报告链接和未核实项目。
 
 ## Verification evidence
 
 2026-09-10：57 条 LIBERO、23 条 WAM，14 项 unittest 通过（包含可选 HF 集成测试）；本地 Hugging Face datasets 默认/ wam config 成功加载并验证 null 与精度。已渲染核对 8 份原论文表格页，核验 11 个报告来源。独立审查子代理因模型容量未完成，已执行本地代码与数据复核；研究审核通过 draft PR 交由维护者继续。
 
 HF 集成测试发现 datasets JSON reader 会将 YYYY-MM-DD 转为 timestamp，声明 string feature 后也会增加时间后缀。导出改为保留原始 JSONL 并附加 typed Parquet 作为默认加载文件，逐条全字段往返相等；这是为保持 schema 的实现调整。
+
+交付：[Draft PR #1](https://github.com/Qingman-Wu/Embodied-AI-Benchmark-Leaderboard/pull/1)。初次 push 的 GitHub CI 已在 Python 3.10 / 3.12 上通过；主分支未合并。
