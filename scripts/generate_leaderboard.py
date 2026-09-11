@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate source-grouped Markdown and the WAM projection; never impute or rank."""
+"""Generate one unified, provenance-preserving Markdown table; never impute or rank."""
 import argparse
 import json
 from pathlib import Path
@@ -7,8 +7,23 @@ import sys
 from validate_json import ROOT, CATEGORIES, SCORES, validate_database
 
 BEGIN, END = '<!-- leaderboard:start -->', '<!-- leaderboard:end -->'
-TRACKS = dict(zip(CATEGORIES, ('Track 1 · LIBERO VLA', 'Track 2 · Foundation Robot Model',
-                              'Track 3 · World Action Model', 'Reference · Classical / Generalist Policies')))
+TRACKS = dict(zip(CATEGORIES, ('Track 1 · VLA', 'Track 2 · Foundation',
+                              'Track 3 · WAM', 'Reference')))
+CATEGORY_MARK = {
+    'Open-source VLA': '🔵 VLA',
+    'Foundation Robot Model': '🟣 Foundation',
+    'World Action Model': '🟢 WAM',
+    'Reference Policy': '⚪ Reference',
+}
+SOURCE_LABELS = {
+    'openvla_2024': 'OpenVLA (2024)', 'openvla_oft_2025': 'OpenVLA-OFT (2025)',
+    'spatialvla_2025': 'SpatialVLA (2025)', 'fastwam_2026': 'Fast-WAM (2026)',
+    'oawam_2026': 'OA-WAM (2026)', 'lawam_2026': 'LaWAM (2026)',
+    'motus_2025': 'Motus (2025)', 'lingbot_va_2026': 'LingBot-VA (2026)',
+    'streaming_wam_2026': 'Streaming-WAM (official)',
+    'openpi_release_2026': 'OpenPI (official)',
+    'fastwam_optional_idm_release_2026': 'Fast-WAM release (official)',
+}
 
 
 def cell(value):
@@ -20,25 +35,22 @@ def score(value):
 
 
 def render_results(rows):
-    lines = ['# LIBERO Leaderboard', '', '数值为来源报告的成功率（%）；— 表示 null。按模型类别及来源分组，不做跨协议总排名。',
-             '同名模型在不同来源/设置中分别保留；完整协议、baseline_list 和核验信息见 data/libero_results.jsonl。', '']
-    for category in CATEGORIES:
-        selected = [r for r in rows if r['category'] == category]
-        if not selected:
-            continue
-        lines += ['## '+TRACKS[category], '']
-        for pid in sorted({r['paper_id'] for r in selected}):
-            group = [r for r in selected if r['paper_id'] == pid]
-            lines += ['### '+cell(group[0]['paper']), '',
-                      '| Record ID | Model / setting | Role | Suite | Spatial | Object | Goal | Long | Average | Source |',
-                      '| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |']
-            for r in sorted(group, key=lambda x:x['id']):
-                source = '—' if not r['source_url'] else f'[{cell(r["source_table"])}]({r["source_url"]})'
-                cols = ['`'+r['id']+'`', cell(r['model'])+' / '+cell(r['setting']), r['result_role'], r['suite']]
-                cols += [score(r[k]) for k in SCORES] + [source]
-                lines.append('| '+' | '.join(cols)+' |')
-            lines.append('')
-    return '\n'.join(lines).rstrip()+'\n'
+    lines = ['# LIBERO Leaderboard', '',
+             '统一实验表：每行是一个“来源论文/官方报告 × 模型 × 设置”。同名模型的不同来源结果保留为不同 row；不做跨协议总排名。',
+             '', '图例：🔵 VLA　🟣 Foundation Robot Model　🟢 World Action Model　⚪ Reference Policy；`—` 表示 null。',
+             '', '| Track | Model | Paper / source | Setting | Suite | Spatial | Object | Goal | Long | Average | Role | Record ID |',
+             '| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- |']
+    ordered = sorted(rows, key=lambda r: (CATEGORIES.index(r['category']) if r['category'] in CATEGORIES else 99,
+                                          r['model'].lower(), r['paper'].lower(), r['setting'].lower(), r['id']))
+    for r in ordered:
+        source = '—' if not r['source_url'] else f'[{SOURCE_LABELS.get(r["paper_id"], cell(r["paper"]))}]({r["source_url"]}) · {cell(r["source_table"])}'
+        cols = [CATEGORY_MARK.get(r['category'], '⚪ '+cell(r['category'])), cell(r['model']), source,
+                cell(r['setting']), r['suite']]
+        cols += [score(r[k]) for k in SCORES]
+        role_mark = {'main': '⭐ main', 'baseline': 'baseline', 'ablation': '🧪 ablation', 'reproduction': '🔁 reproduction'}
+        cols += [role_mark.get(r['result_role'], r['result_role']), '`'+r['id']+'`']
+        lines.append('| '+' | '.join(cols)+' |')
+    return '\n'.join(lines)+'\n'
 
 
 def render_wam(rows, checkpoints):
@@ -62,8 +74,8 @@ def generate(root, check=False):
     readme = (root/'README.md').read_text(encoding='utf-8')
     if readme.count(BEGIN) != 1 or readme.count(END) != 1 or readme.index(BEGIN) >= readme.index(END):
         raise ValueError('README requires one ordered leaderboard marker pair')
-    # Keep all rows visible in README; shift generated headings under LIBERO Leaderboard.
-    embedded = '\n'.join('#'+line if line.startswith('#') else line for line in md.splitlines()[2:])
+    # Keep the same single table visible in README under the marker.
+    embedded = '\n'.join(md.splitlines()[2:])
     readme = readme.split(BEGIN)[0]+BEGIN+'\n\n'+embedded+'\n\n'+END+readme.split(END)[1]
     outputs = {root/'tables/libero_leaderboard.md': md,
                root/'tables/wam_comparison.md': render_wam(wam, {c['model']:c for c in data['checkpoints.json']}),
