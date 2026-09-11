@@ -38,8 +38,8 @@ def render_results(rows):
     lines = ['# LIBERO Leaderboard', '',
              '统一实验表：每行是一个“来源论文/官方报告 × 模型 × 设置”。同名模型的不同来源结果保留为不同 row；不做跨协议总排名。',
              '', '图例：🔵 VLA　🟣 Foundation Robot Model　🟢 World Action Model　⚪ Reference Policy；`—` 表示 null。',
-             '', '| Track | Model | Paper / source | Setting | Suite | Spatial | Object | Goal | Long | Average | Role | Record ID |',
-             '| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- |']
+             '', '| Track | Model | Paper / source | Setting | Suite | Spatial | Object | Goal | Long | Average | Role | 备注 | Record ID |',
+             '| --- | --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |']
     ordered = sorted(rows, key=lambda r: (CATEGORIES.index(r['category']) if r['category'] in CATEGORIES else 99,
                                           r['model'].lower(), r['paper'].lower(), r['setting'].lower(), r['id']))
     for r in ordered:
@@ -48,7 +48,7 @@ def render_results(rows):
                 cell(r['setting']), r['suite']]
         cols += [score(r[k]) for k in SCORES]
         role_mark = {'main': '⭐ main', 'baseline': 'baseline', 'ablation': '🧪 ablation', 'reproduction': '🔁 reproduction'}
-        cols += [role_mark.get(r['result_role'], r['result_role']), '`'+r['id']+'`']
+        cols += [role_mark.get(r['result_role'], r['result_role']), cell(r.get('notes', '')), '`'+r['id']+'`']
         lines.append('| '+' | '.join(cols)+' |')
     return '\n'.join(lines)+'\n'
 

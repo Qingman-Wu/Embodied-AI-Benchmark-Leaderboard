@@ -99,6 +99,8 @@ class PipelineTests(unittest.TestCase):
         for row in rows:
             self.assertIn('`'+row['id']+'`', table)
         self.assertIn('—', table)
+        self.assertIn('备注', table)
+        self.assertIn('LingBot-VA、Fast-WAM', table)
 
     @unittest.skipUnless(importlib.util.find_spec('pyarrow'), 'optional pyarrow export dependency is not installed')
     def test_export_is_lossless_and_has_default_config(self):
@@ -120,3 +122,18 @@ class PipelineTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+class ConsolidationTests(unittest.TestCase):
+    def test_results_are_consolidated_with_chinese_provenance_notes(self):
+        rows = [json.loads(x) for x in (ROOT/'data/libero_results.jsonl').read_text().splitlines()]
+        ids = {r['id'] for r in rows}
+        self.assertNotIn('openvla_oft_2025_pd_ac', ids)
+        self.assertNotIn('streaming_wam_2026_streaming_wam_w_o_slot_encoder_ablation', ids)
+        self.assertEqual(len(rows), 16)
+        openvla = next(r for r in rows if r['id'] == 'openvla_2024_openvla')
+        self.assertIn('LingBot-VA', openvla['notes'])
+        self.assertIn('Fast-WAM', openvla['notes'])
+        self.assertIn('OpenVLA-OFT', openvla['notes'])
+        self.assertEqual(sum(r['model'] == 'OpenVLA' for r in rows), 1)
+        self.assertEqual(sum(r['model'] == 'Fast-WAM' for r in rows), 1)
+        self.assertEqual(sum(r['model'] == 'Motus' for r in rows), 1)
