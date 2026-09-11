@@ -137,3 +137,14 @@ class ConsolidationTests(unittest.TestCase):
         self.assertEqual(sum(r['model'] == 'OpenVLA' for r in rows), 1)
         self.assertEqual(sum(r['model'] == 'Fast-WAM' for r in rows), 1)
         self.assertEqual(sum(r['model'] == 'Motus' for r in rows), 1)
+
+class WebsiteTests(unittest.TestCase):
+    def test_static_leaderboard_has_filters_and_data_loader(self):
+        html = (ROOT/'website/index.html').read_text()
+        js = (ROOT/'website/app.js').read_text()
+        css = (ROOT/'website/styles.css').read_text()
+        self.assertIn('id="leaderboard"', html)
+        self.assertIn('data/libero_results.jsonl', js)
+        self.assertIn('filter-track', html)
+        self.assertIn('details', js)
+        self.assertIn('--accent', css)
