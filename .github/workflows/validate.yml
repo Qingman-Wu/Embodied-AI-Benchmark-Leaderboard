@@ -1,0 +1,32 @@
+name: Validate leaderboard
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Validate provenance and references
+        run: python scripts/validate_json.py
+      - name: Check generated Markdown and WAM projection
+        run: python scripts/generate_leaderboard.py --check
+      - name: Install optional Hugging Face integration dependencies
+        run: python -m pip install -r requirements-hf.txt
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
+      - name: Export dataset package
+        run: python scripts/export_hf_dataset.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hf-dataset-python-${{ matrix.python-version }}
+          path: dist/hf_dataset/

@@ -1,56 +1,707 @@
 [
   {
+    "model": "OpenVLA",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial",
+      "object",
+      "goal",
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/openvla/openvla/blob/c8f03f48af692657d3060c19588038c7220e9af9/README.md",
+        "locator": "LIBERO Simulation Benchmark Evaluations / Launching LIBERO Evaluations"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://huggingface.co/openvla/openvla-7b/tree/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+        "locator": "model-00001-of-00003.safetensors and model index"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/openvla/openvla-7b/tree/47a0ec7fc4ec123775a391911046cf33cf9ed83f",
+        "locator": "model-00001-of-00003.safetensors and model index"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/openvla/openvla-7b-finetuned-libero-spatial/tree/962318cec55ac10993ff0f5f43eda9a270b4c873",
+        "locator": "LIBERO-Spatial model-00001-of-00004.safetensors; other suites linked in official README"
+      }
+    ],
+    "notes": "仅审计官方文件与说明，未下载大权重或运行机器人实验；LIBERO checkpoint 状态不保证每条历史结果的具体权重已发布。"
+  },
+  {
+    "model": "OpenVLA-OFT",
+    "code": "released",
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/moojink/openvla-oft/blob/e4287e94541f459edc4feabc4e181f537cd569a8/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/moojink/openvla-oft/blob/e4287e94541f459edc4feabc4e181f537cd569a8/README.md",
+        "locator": "Quick Start imports experiments.robot.libero.run_libero_eval; LIBERO.md instructions"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-spatial/tree/6d0231af0e48c5985f1ff86908f4674b84bc049b",
+        "locator": "action_head--150000_checkpoint.pt, model shards and proprio projector"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/moojink/openvla-7b-oft-finetuned-libero-spatial/tree/6d0231af0e48c5985f1ff86908f4674b84bc049b",
+        "locator": "action_head--150000_checkpoint.pt, model shards and proprio projector"
+      }
+    ],
+    "notes": "OFT 是 OpenVLA 的 fine-tuning recipe；OFT 独立通用预训练 checkpoint 未确认，不能把 OpenVLA base 当作 OFT base。"
+  },
+  {
+    "model": "SpatialVLA",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": null,
+    "huggingface": "released",
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": null,
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/SpatialVLA/SpatialVLA/blob/18fd74b2a633ec8d9ec7aadcd803969555cc9fbd/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://huggingface.co/IPEC-COMMUNITY/spatialvla-4b-224-pt/tree/886c4557dfde53b44c0f74fde7d89bf83a26c3cd",
+        "locator": "model-00001-of-00002.safetensors; official README Model Zoo identifies OXE/RH20T pretraining"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/IPEC-COMMUNITY/spatialvla-4b-224-pt/tree/886c4557dfde53b44c0f74fde7d89bf83a26c3cd",
+        "locator": "model-00001-of-00002.safetensors; official README Model Zoo identifies OXE/RH20T pretraining"
+      }
+    ],
+    "notes": "已确认 base 权重与代码。README 的评估代码链接为 SimplerEnv；LIBERO rollout 代码/权重未确认。"
+  },
+  {
+    "model": "π0",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": null,
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+        "locator": "Fine-Tuning Base Models / LIBERO README; examples/libero/main.py"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+        "locator": "Model Checkpoints / Base Models: gs://openpi-assets/checkpoints/pi0_base"
+      }
+    ],
+    "notes": "官方权重主要通过 Google Cloud Storage 发布；未确认官方 Hugging Face 模型镜像，huggingface 保留 null。"
+  },
+  {
+    "model": "π0.5",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": "released",
+    "huggingface": null,
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial",
+      "object",
+      "goal",
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+        "locator": "Fine-Tuning Base Models / LIBERO README; examples/libero/main.py"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+        "locator": "Model Checkpoints / Base Models: gs://openpi-assets/checkpoints/pi05_base"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/README.md",
+        "locator": "Fine-Tuned Models: gs://openpi-assets/checkpoints/pi05_libero"
+      }
+    ],
+    "notes": "官方权重主要通过 Google Cloud Storage 发布；未确认官方 Hugging Face 模型镜像，huggingface 保留 null。"
+  },
+  {
+    "model": "GR00T",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "GR00T-N1",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": null,
+    "huggingface": "released",
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": null,
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/n1-release/README.md",
+        "locator": "Version-specific release tag; training and inference code"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://huggingface.co/nvidia/GR00T-N1-2B/tree/fc879581ca32f4f6d6e02cf0cc80452f6b0c3873",
+        "locator": "Model safetensors and configuration files at model revision"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/nvidia/GR00T-N1-2B/tree/fc879581ca32f4f6d6e02cf0cc80452f6b0c3873",
+        "locator": "Model safetensors and configuration files at model revision"
+      }
+    ],
+    "notes": "版本隔离审计；当前 main 为 N1.7，不将 N1.7 的 LIBERO 权重赋给旧版本。未确认此版本的官方 LIBERO fine-tuned 权重。"
+  },
+  {
+    "model": "GR00T-N1.6",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": null,
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": null,
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/n1.6-release/README.md",
+        "locator": "Version-specific release tag; training and inference code"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://huggingface.co/nvidia/GR00T-N1.6-3B/tree/d0814e7ecb19202e7c8468b46098b0b7ef3a6d61",
+        "locator": "Model safetensors and configuration files at model revision"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/nvidia/GR00T-N1.6-3B/tree/d0814e7ecb19202e7c8468b46098b0b7ef3a6d61",
+        "locator": "Model safetensors and configuration files at model revision"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/NVIDIA/Isaac-GR00T/blob/n1.6-release/examples/LIBERO/README.md",
+        "locator": "Evaluate checkpoint: policy server and LIBERO rollout client"
+      }
+    ],
+    "notes": "版本隔离审计；当前 main 为 N1.7，不将 N1.7 的 LIBERO 权重赋给旧版本。未确认此版本的官方 LIBERO fine-tuned 权重。"
+  },
+  {
+    "model": "Fast-WAM",
+    "code": "released",
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial",
+      "object",
+      "goal",
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/yuantianyuan01/FastWAM/blob/7faa71108368fbb3b6885649f112af607427a2d4/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/yuantianyuan01/FastWAM/blob/7faa71108368fbb3b6885649f112af607427a2d4/README.md",
+        "locator": "Inference with Released Checkpoints: experiments/libero/run_libero_manager.py"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/yuanty/fastwam/tree/8eaceeb24c3cc92ff2a9c9a9d266a4941b836705",
+        "locator": "libero_uncond_2cam224.pt and dataset statistics; optional IDM is a separately named checkpoint"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/yuanty/fastwam/tree/8eaceeb24c3cc92ff2a9c9a9d266a4941b836705",
+        "locator": "libero_uncond_2cam224.pt and dataset statistics; optional IDM is a separately named checkpoint"
+      }
+    ],
+    "notes": "发布 LIBERO fine-tuned 权重；无 embodied pretraining 的结果不等于发布通用 Fast-WAM pretrained checkpoint。Wan2.2 骨干权重不计作 Fast-WAM 预训练权重。"
+  },
+  {
+    "model": "Streaming-WAM",
+    "code": "released",
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial",
+      "object",
+      "goal",
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/SJTU-DENG-Lab/Streaming-WAM/blob/e281e776907025802aa73276fea59c5a1f54f1db/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/SJTU-DENG-Lab/Streaming-WAM/blob/e281e776907025802aa73276fea59c5a1f54f1db/README.md",
+        "locator": "Quick start: accelerated Streaming-WAM on LIBERO"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/SJTU-DENG-Lab/Streaming-WAM/tree/8dcc67ce14c72a5cce0c04c87a518b4ccfec217e",
+        "locator": "ac-stream/model.pt; official model card identifies Streaming-WAM LIBERO checkpoint"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/SJTU-DENG-Lab/Streaming-WAM/tree/8dcc67ce14c72a5cce0c04c87a518b4ccfec217e",
+        "locator": "ac-stream/model.pt; official model card identifies Streaming-WAM LIBERO checkpoint"
+      }
+    ],
+    "notes": "仅审计官方文件与说明，未下载大权重或运行机器人实验；LIBERO checkpoint 状态不保证每条历史结果的具体权重已发布。"
+  },
+  {
+    "model": "OA-WAM",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "核对论文与 GitHub repository search，未确认官方代码/模型链接；第三方 Reproduction_OA_WAM 不作官方 release 证据。null 不断言未发布。"
+  },
+  {
+    "model": "LaWAM",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial",
+      "object",
+      "goal",
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/RLinf/LaWAM/blob/7d27b9607c22034934a4b70347f8bfaba92bf692/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/RLinf/LaWAM/blob/7d27b9607c22034934a4b70347f8bfaba92bf692/README.md",
+        "locator": "LIBERO Inference / Run LIBERO Benchmark"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://huggingface.co/jialei02/lawam_pretrain/tree/62b14a8e8990050ec8aeb1e1b8c8694d2bf60e84",
+        "locator": "final_model/pytorch_model.pt; official README identifies LaWAM pretraining checkpoint"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/jialei02/lawam_pretrain/tree/62b14a8e8990050ec8aeb1e1b8c8694d2bf60e84",
+        "locator": "final_model/pytorch_model.pt; official README identifies LaWAM pretraining checkpoint"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/jialei02/lawam_libero_sft_release/tree/b09a207ffcde367e71439621eb1679f941b4f026",
+        "locator": "final_model/pytorch_model.pt; official README identifies LIBERO SFT release"
+      }
+    ],
+    "notes": "仅审计官方文件与说明，未下载大权重或运行机器人实验；LIBERO checkpoint 状态不保证每条历史结果的具体权重已发布。"
+  },
+  {
+    "model": "LingBot-VA",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/Robbyant/lingbot-va/blob/7c6ffa9bfc4b83582cafc860fab4c82cc7deeeeb/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/Robbyant/lingbot-va/blob/7c6ffa9bfc4b83582cafc860fab4c82cc7deeeeb/README.md",
+        "locator": "Evaluation on LIBERO / evaluation/libero/launch_server.sh and launch_client.sh"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://huggingface.co/robbyant/lingbot-va-base/tree/68b7bc1b35da6ddc67ea94c4ceb58d768fbb3f9c",
+        "locator": "transformer/diffusion_pytorch_model-00001-of-00003.safetensors"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/robbyant/lingbot-va-base/tree/68b7bc1b35da6ddc67ea94c4ceb58d768fbb3f9c",
+        "locator": "transformer/diffusion_pytorch_model-00001-of-00003.safetensors"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/robbyant/lingbot-va-posttrain-libero-long/tree/0e89d1e753019988aba484e8da2dc0810e264d9f",
+        "locator": "transformer diffusion model shards; official README labels LIBERO-LONG"
+      }
+    ],
+    "notes": "审计 LingBot-VA v1，已确认仅 LIBERO-Long 的 fine-tuned 权重。不可据此声称 Spatial/Object/Goal 权重已发布；不混入 LingBot-VA 2.0。"
+  },
+  {
+    "model": "Motus",
+    "code": "released",
+    "pretrained_checkpoint": "released",
+    "libero_checkpoint": null,
+    "huggingface": "released",
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": null,
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/thu-ml/Motus/blob/f771216802b8a1601599422f12088bee3c068c14/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "pretrained_checkpoint",
+        "url": "https://huggingface.co/motus-robotics/Motus/tree/3cc380a3cc18e8a78fd1ec41417d00e945f472e1",
+        "locator": "mp_rank_00_model_states.pt; official README identifies Stage 2 latent-action checkpoint"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/motus-robotics/Motus/tree/3cc380a3cc18e8a78fd1ec41417d00e945f472e1",
+        "locator": "mp_rank_00_model_states.pt; official README identifies Stage 2 latent-action checkpoint"
+      }
+    ],
+    "notes": "已确认 Stage 2 Motus 预训练权重。官方 README 列出 RoboTwin/real-world 推理；未确认 LIBERO 权重或 rollout 代码，不把 RoboTwin release 当作 LIBERO。"
+  },
+  {
     "model": "Diffusion Policy",
-    "code": "",
-    "pretrained_checkpoint": "",
-    "libero_checkpoint": "",
-    "huggingface": "",
-    "status": "pending verification",
-    "notes": "Checkpoint information will be filled after source audit."
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
   },
   {
     "model": "Octo",
-    "code": "",
-    "pretrained_checkpoint": "",
-    "libero_checkpoint": "",
-    "huggingface": "",
-    "status": "pending verification",
-    "notes": "Checkpoint information will be filled after source audit."
-  },
-  {
-    "model": "OpenVLA",
-    "code": "",
-    "pretrained_checkpoint": "",
-    "libero_checkpoint": "",
-    "huggingface": "",
-    "status": "pending verification",
-    "notes": "Checkpoint information will be filled after source audit."
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
   },
   {
     "model": "ACT",
-    "code": "",
-    "pretrained_checkpoint": "",
-    "libero_checkpoint": "",
-    "huggingface": "",
-    "status": "pending verification",
-    "notes": "Early imitation learning policy. Checkpoint information requires official source verification."
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
   },
   {
     "model": "BC-Z",
-    "code": "",
-    "pretrained_checkpoint": "",
-    "libero_checkpoint": "",
-    "huggingface": "",
-    "status": "pending verification",
-    "notes": "Early robot policy baseline. Checkpoint information requires official source verification."
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
   },
   {
     "model": "3D Diffuser Actor",
-    "code": "",
-    "pretrained_checkpoint": "",
-    "libero_checkpoint": "",
-    "huggingface": "",
-    "status": "pending verification",
-    "notes": "Diffusion-based manipulation policy."
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Fast-WAM-Joint",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Fast-WAM-IDM",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Fast-WAM w/o video co-training",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Fast-WAM-RTC",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Fast-WAM-Joint-CD",
+    "code": "released",
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial",
+      "object",
+      "goal",
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/SJTU-DENG-Lab/Streaming-WAM/blob/e281e776907025802aa73276fea59c5a1f54f1db/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/SJTU-DENG-Lab/Streaming-WAM/blob/e281e776907025802aa73276fea59c5a1f54f1db/README.md",
+        "locator": "Experiments / LIBERO; model card Run FastWAM-Joint-CD"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/SJTU-DENG-Lab/Streaming-WAM/tree/8dcc67ce14c72a5cce0c04c87a518b4ccfec217e",
+        "locator": "joint-cd/model.pt; official model card identifies FastWAM-Joint-CD"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/SJTU-DENG-Lab/Streaming-WAM/tree/8dcc67ce14c72a5cce0c04c87a518b4ccfec217e",
+        "locator": "joint-cd/model.pt; official model card identifies FastWAM-Joint-CD"
+      }
+    ],
+    "notes": "仅审计官方文件与说明，未下载大权重或运行机器人实验；LIBERO checkpoint 状态不保证每条历史结果的具体权重已发布。"
+  },
+  {
+    "model": "Streaming-WAM w/o Action Conditioning",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Streaming-WAM w/o Slot Encoder",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Fast-WAM-H3",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "VLA-JEPA",
+    "code": null,
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": null,
+    "huggingface": null,
+    "evaluation_code": null,
+    "reproduce_level": null,
+    "verified_at": null,
+    "libero_suites": null,
+    "evidence": [],
+    "notes": "尚未核实；null 不代表未发布。"
+  },
+  {
+    "model": "Fast-WAM-Optional-IDM",
+    "code": "released",
+    "pretrained_checkpoint": null,
+    "libero_checkpoint": "released",
+    "huggingface": "released",
+    "evaluation_code": "released",
+    "reproduce_level": null,
+    "verified_at": "2026-09-10",
+    "libero_suites": [
+      "spatial",
+      "object",
+      "goal",
+      "long"
+    ],
+    "evidence": [
+      {
+        "field": "code",
+        "url": "https://github.com/yuantianyuan01/FastWAM/blob/7faa71108368fbb3b6885649f112af607427a2d4/README.md",
+        "locator": "Official source repository README; training/inference implementation"
+      },
+      {
+        "field": "evaluation_code",
+        "url": "https://github.com/yuantianyuan01/FastWAM/blob/7faa71108368fbb3b6885649f112af607427a2d4/README.md",
+        "locator": "Optional IDM; experiments/libero/run_libero_manager.py"
+      },
+      {
+        "field": "libero_checkpoint",
+        "url": "https://huggingface.co/yuanty/fastwam/tree/8eaceeb24c3cc92ff2a9c9a9d266a4941b836705",
+        "locator": "libero_optional_idm_2cam224.pt and corresponding dataset statistics"
+      },
+      {
+        "field": "huggingface",
+        "url": "https://huggingface.co/yuanty/fastwam/tree/8eaceeb24c3cc92ff2a9c9a9d266a4941b836705",
+        "locator": "libero_optional_idm_2cam224.pt and corresponding dataset statistics"
+      }
+    ],
+    "notes": "仅审计官方文件与说明，未下载大权重或运行机器人实验；LIBERO checkpoint 状态不保证每条历史结果的具体权重已发布。"
   }
 ]

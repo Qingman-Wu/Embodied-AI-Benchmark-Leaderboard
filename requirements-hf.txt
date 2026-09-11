@@ -1,0 +1,3 @@
+# Optional: only required for Hugging Face export and integration verification.
+pyarrow==25.0.1
+datasets==5.0.1
